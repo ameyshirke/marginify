@@ -29,6 +29,13 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-time-alarm",
     class: ""
   },
+  {
+    path: '/user',
+    title: 'User Profile',
+    rtlTitle: '',
+    icon: 'icon-calendar-60',
+    class: ''
+  },
 
 ];
 
