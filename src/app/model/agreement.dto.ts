@@ -3,5 +3,7 @@ export class Agreement{
     agreementName: string;
     principalCode: string;
     agreementScope: string;
-    currencyCode: string
+    agreementType: string;
+    agreementMutuality: string;
+    counterpartyCode: string;
 }
