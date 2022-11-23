@@ -45,17 +45,23 @@
 
     <div class="col">
       <div class=" card">
-        <div class=" card-header">
-          <h4 class=" card-title">Agreements</h4>
+        <div class="row">
+          <div class=" col-lg-8">
+            <div class=" card-header">
+              <h4 class=" card-title" style="font-size: 25px; font-weight: 400">Agreements</h4>
+            </div>
+          </div>
+          <div class=" col-lg-4 mt-2 px-4 ">
+              <!-- <i class=" tim-icons icon-bell-55 text-danger-states"></i> -->
+              <input type="text"  style="font-size: 20px; font-weight: 400; max-width: 500px;" [(ngModel)]="agreement" class="form-control" placeholder="Search any fields">
+          </div>
         </div>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-      </div>
         <div class=" card-body">
           <div class=" table-responsive">
             <table class=" table tablesorter" id="">
               <thead class=" text-primary">
                 <tr>
+                  <th>No.</th>
                   <th>Agreement Code</th>
                   <th>Agreement Name</th>
                   <th>Principal Code</th>
@@ -67,7 +73,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let agreement of agreements">
+                <tr *ngFor="let agreement of agreements | customerAgreementsFilter:agreement;let i = index">
+                  <th scope="row">{{i+1}}</th>
                   <td>{{agreement.agreementCode}}</td>
                   <td>{{agreement.agreementName}}</td>
                   <td>{{agreement.principalCode}}</td>

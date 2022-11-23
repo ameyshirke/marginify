@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
   public clicked2: boolean = false;
 
+  name = 'Angular 6';
+  agreement="";
+  aa:boolean=false;
+
   constructor() {}
 
   agreements :  Agreement[] = [];
@@ -464,7 +468,11 @@ export class DashboardComponent implements OnInit {
     });
 
     this.loadTableData();
+  }
 
+  setIndex(ii){
+    this.aa=ii;
+    console.log
   }
 
   loadTableData() {
