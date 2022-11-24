@@ -1,131 +1,56 @@
 
 <div class=" content">
+  
+  
+  <div class="row">
+    <h1 style="margin: auto;">Add some image or something</h1>
+  </div>
+
+
   <div class=" row">
-    <div class=" col-md-12">
-      <div class=" card">
-        <div class=" card-header">
-          <h4 class=" card-title">Simple Table</h4>
-        </div>
-        <div class=" card-body">
-          <div class=" table-responsive">
-            <table class=" table tablesorter" id="">
-              <thead class=" text-primary">
-                <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
-                </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
-                </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class=" col-md-12">
       <div class=" card card-plain">
-        <div class=" card-header">
-          <h4 class=" card-title">Table on Plain Background</h4>
-          <p class=" category">Here is a subtitle for this table</p>
+        <div class="row">
+          <div class=" col-lg-8">
+            <div class=" card-header">
+              <h4 class=" card-title" style="font-size: 20px; font-weight: 400">Margin Calls</h4>
+            </div>
+          </div>
+          <div class=" col-lg-4 mt-2 px-4 ">
+              <!-- <i class=" tim-icons icon-bell-55 text-danger-states"></i> -->
+              <input type="text"  style="font-size: 16px; font-weight: 400; max-width: 500px;" [(ngModel)]="agreement"  class="form-control" placeholder="Search any fields">
+          </div>
         </div>
         <div class=" card-body">
           <div class=" table-responsive">
             <table class=" table tablesorter" id="">
               <thead class=" text-primary">
                 <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
+                  <th>No.</th>
+                  <th>Agreement Code</th>
+                  <th>Agreement Name</th>
+                  <th>Principal Code</th>
+                  <th>Agreement Scope</th>
+                  <th>Agreement Type</th>
+                  <th>Agreement Mutuality</th>
+                  <th>Counterparty Code</th>
+                  <!-- <th class=" text-center">Curency Code</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
+                <tr *ngFor="let agreement of agreements | customerAgreementsFilter:agreement;let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{agreement.agreementCode}}</td>
+                  <td>{{agreement.agreementName}}</td>
+                  <td>{{agreement.principalCode}}</td>
+                  <td>{{agreement.agreementScope}}</td>
+                  <td>{{agreement.agreementType}}</td>
+                  <td>{{agreement.agreementMutuality}}</td>
+                  <td>{{agreement.counterpartyCode}}</td>
+                  <!-- <td class=" text-center">$36,738</td> -->
                 </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
-                </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
