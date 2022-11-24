@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'customerAgreementsFilter'
 })
-export class SearchPipe implements PipeTransform {
+export class SearchPipeAgreement implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if (!args) {

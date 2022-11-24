@@ -1,0 +1,31 @@
+.modal-header{
+    padding-bottom: 0px !important;
+}
+
+.modal-header .close{
+    padding-top: 14px !important;
+}
+
+
+.modal-body{
+    padding-top: 0px !important;
+}
+
+::ng-deep .modal-search .modal-dialog { 
+    max-width: 400px;
+    // width: 60%;
+}
+
+.wiggle-button {
+    height: 3em;
+    width: 20em;
+    background: #007aff;
+    border-radius: 5px;
+    color: white;
+}
+
+.wiggle-button:hover {
+    background: white;
+    color: #007aff;
+    border: 1px solid #007aff;
+}

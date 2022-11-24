@@ -3,7 +3,7 @@
   
   
   <div class="row">
-    <h1 style="margin: auto;">Add some image or something</h1>
+    <img src="../../../assets/img/bitcoin-transfer.webp" class="rounded mx-auto d-block" height = "400px" width = "400px" alt="...">
   </div>
 
 
@@ -28,29 +28,44 @@
               <thead class=" text-primary">
                 <tr>
                   <th>No.</th>
+                  <th>Process Step</th>
                   <th>Agreement Code</th>
-                  <th>Agreement Name</th>
-                  <th>Principal Code</th>
-                  <th>Agreement Scope</th>
-                  <th>Agreement Type</th>
-                  <th>Agreement Mutuality</th>
-                  <th>Counterparty Code</th>
+                  <th>Call Type</th>
+                  <th>Margin Call Scope</th>
+                  <th>Valuation date</th>
+                  <th>Proposed Transfer Amount</th>
+                  <th>Valuation Currency</th>
+                  <th>Info</th>
+                  <th>Transfer</th>
                   <!-- <th class=" text-center">Curency Code</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let agreement of agreements | customerAgreementsFilter:agreement;let i = index">
+                <tr *ngFor="let margincall of margincalls | customerMargincallsFilter:agreement;let i = index">
                   <th scope="row">{{i+1}}</th>
-                  <td>{{agreement.agreementCode}}</td>
-                  <td>{{agreement.agreementName}}</td>
-                  <td>{{agreement.principalCode}}</td>
-                  <td>{{agreement.agreementScope}}</td>
-                  <td>{{agreement.agreementType}}</td>
-                  <td>{{agreement.agreementMutuality}}</td>
-                  <td>{{agreement.counterpartyCode}}</td>
+                  <td>{{margincall.processStep}}</td>
+                  <td>{{margincall.agreementCode}}</td>
+                  <td>{{margincall.callType}}</td>
+                  <td *ngIf="margincall.marginCallScope=='To Be Executed'"><p style="color: red; font-size: 14px;">{{margincall.marginCallScope}}</p></td>
+                  <td *ngIf="margincall.marginCallScope=='Executed'"><p style="color: #39FF14; font-size: 14px;">{{margincall.marginCallScope}}</p></td>
+                  <td>{{margincall.valuationDate}}</td>
+                  <td>{{margincall.proposedTransferAmount}}</td>
+                  <td>{{margincall.valuationCurrency}}</td>
+                  <td><button type="button" class="btn-sm btn-info" data-target="#searchModal"
+                    data-toggle="modal"
+                    (click)="open(content)"
+                    id="search-button"><i class="fa fa-info"></i></button></td>
+                  <td><button  type="button" class="btn-sm btn-info" (click)="change(margincall)"><i class="fa fa-paper-plane"></i></button></td>
                   <!-- <td class=" text-center">$36,738</td> -->
                 </tr>
-                
+
+                <!-- <button
+            class=" btn btn-link"
+            data-target="#searchModal"
+            data-toggle="modal"
+            (click)="open(content)"
+            id="search-button"
+          > -->
               </tbody>
             </table>
           </div>
@@ -59,3 +74,31 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="container" style="background: whitesmoke;">
+  <div class=" modal-header">
+    <div class="h2" style="color: #1B173E;"><b>Margin Call Details</b></div>
+
+    <button
+      aria-label="Close"
+      class=" close"
+      data-dismiss="modal"
+      type="button"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <i class=" tim-icons icon-simple-remove"> </i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="h4"><b>Process Step: </b> &nbsp; Handle Partial Request</div>
+    <div class="h4"><b>Agreement Code: </b> &nbsp; BNPP FR CLRD OTC</div>
+    <div class="h4"><b>Call Type: </b> &nbsp; Variation Margin</div>
+    <div class="h4"><b>Valuation Date: </b> &nbsp; 12/05/2017</div>
+    <div class="h4" style="color: #8B0000;"><b>Margin Call: </b> &nbsp; -10,040,000</div>
+    <div class="h4" style="color: green;"><b>Independent Amount: </b>&nbsp; 3,00,000</div>
+    <div class="h4" style="color: green;"><b>Threshold: </b>&nbsp; 15,00,00,000</div>
+    <div class="h4" style="color: #8B0000;"><b>Exposure: </b>&nbsp; -10,000,000</div>
+  </div>
+</div>
+</ng-template>

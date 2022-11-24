@@ -102,3 +102,25 @@
     width: 91.6666%;
   }
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1D8CF8; 
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1D8CF8; 
+}
+
+::-webkit-scrollbar { 
+  width: 5px;
+  height: 5px;
+}

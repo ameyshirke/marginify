@@ -12,21 +12,21 @@ export const ROUTES: RouteInfo[] = [
     path: "/icons",
     title: "Home",
     rtlTitle: "",
-    icon: "icon-sound-wave",
+    icon: "icon-bank",
     class: ""
   },
   {
     path: "/dashboard",
     title: "Dashboard",
     rtlTitle: "",
-    icon: "icon-chart-pie-36",
+    icon: "icon-sound-wave",
     class: ""
   },
   {
     path: "/tables",
     title: "Margin Calls",
     rtlTitle: "",
-    icon: "icon-time-alarm",
+    icon: "icon-bulb-63",
     class: ""
   },
   {

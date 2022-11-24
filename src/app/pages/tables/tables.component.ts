@@ -1,19 +1,34 @@
 import { Component, OnInit } from "@angular/core";
 import { Agreement } from "src/app/model/agreement.dto";
+import { NotificationService } from '../../layouts/admin-layout/notification.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Margincall } from "src/app/model/margincall.dto";
 
 @Component({
   selector: "app-tables",
-  templateUrl: "tables.component.html"
+  templateUrl: "tables.component.html",
+  styleUrls: ["tables.component.scss"]
 })
 export class TablesComponent implements OnInit {
 
   name = 'Angular 6';
   agreement="";
   aa:boolean=false;
-  
-  constructor() {}
+  closeResult: string;
 
-  agreements :  Agreement[] = [];
+  constructor(private notifyService : NotificationService, private modalService: NgbModal) {}
+
+  showToasterSuccess(){
+    this.notifyService.showSuccess("Collateral Transferred From Deutsche Bank To JP Morgan", "Transfer Done Successfully !!")
+  }
+
+  change(margincall){
+    this.showToasterSuccess();
+    margincall.marginCallScope = "Executed";
+    margincall.proposedTransferAmount = "0";
+  }
+
+  margincalls : Margincall[] = [];
 
   ngOnInit() {
     this.loadTableData();
@@ -25,64 +40,83 @@ export class TablesComponent implements OnInit {
   }
 
   loadTableData() {
-    var ag1: Agreement = new Agreement();
-    ag1.agreementCode = "SOC GEN UK OTC";
-    ag1.agreementName = "SOC GEN UK OTC";
-    ag1.principalCode = "FM";
-    ag1.agreementScope = "Executed";
-    ag1.agreementType = "OTC";
-    ag1.agreementMutuality = "Both";
-    ag1.counterpartyCode = "SOCG";
-    this.agreements.push(ag1);
+    var mg1: Margincall = new Margincall();
+    mg1.processStep = "Handle Partial Request"
+    mg1.agreementCode = "BNPP FR CLRD OTC";
+    mg1.callType = "Variation Margin";
+    mg1.marginCallScope = "To Be Executed";
+    mg1.valuationDate = "12/05/2017";
+    mg1.proposedTransferAmount = "-10,040,000";
+    mg1.valuationCurrency = "EUR";
+    this.margincalls.push(mg1);
 
-    var ag2: Agreement = new Agreement();
-    ag2.agreementCode = "NOMURA LN OTC";
-    ag2.agreementName = "NOMURA LN OTC";
-    ag2.principalCode = "FM";
-    ag2.agreementScope = "Executed";
-    ag2.agreementType = "OTC";
-    ag2.agreementMutuality = "Both";
-    ag2.counterpartyCode = "SOCG";
-    this.agreements.push(ag2);
+    var mg2: Margincall = new Margincall();
+    mg2.processStep = "Expected Call"
+    mg2.agreementCode = "BNPP FR CLRD OTC";
+    mg2.callType = "Initial Margin";
+    mg2.marginCallScope = "To Be Executed";
+    mg2.valuationDate = "12/05/2017";
+    mg2.proposedTransferAmount = "-3,000,000";
+    mg2.valuationCurrency = "EUR";
+    this.margincalls.push(mg2);
 
-    var ag3: Agreement = new Agreement();
-    ag3.agreementCode = "GOLDMAN US REPO";
-    ag3.agreementName = "GOLDMAN US REPO";
-    ag3.principalCode = "ALLY IM";
-    ag3.agreementScope = "Executed";
-    ag3.agreementType = "Repo";
-    ag3.agreementMutuality = "Both";
-    ag3.counterpartyCode = "SOCG";
-    this.agreements.push(ag3);
+    var mg3: Margincall = new Margincall();
+    mg3.processStep = "Agreed"
+    mg3.agreementCode = "CR SUISSE LN OTC";
+    mg3.callType = "Variation Margin";
+    mg3.marginCallScope = "To Be Executed";
+    mg3.valuationDate = "12/05/2017";
+    mg3.proposedTransferAmount = "1,890,000";
+    mg3.valuationCurrency = "USD";
+    this.margincalls.push(mg3);
 
-    var ag4: Agreement = new Agreement();
-    ag4.agreementCode = "GOLDMAN US MSFTA";
-    ag4.agreementName = "GOLDMAN US MSFTA";
-    ag4.principalCode = "FM";
-    ag4.agreementScope = "Executed";
-    ag4.agreementType = "MSFTA";
-    ag4.agreementMutuality = "Both";
-    ag4.counterpartyCode = "SOCG";
-    this.agreements.push(ag4);
+    var mg4: Margincall = new Margincall();
+    mg4.processStep = "Disputed"
+    mg4.agreementCode = "GOLDMAN US MSFTA";
+    mg4.callType = "Variation Margin";
+    mg4.marginCallScope = "To Be Executed";
+    mg4.valuationDate = "12/05/2017";
+    mg4.proposedTransferAmount = "-20,000";
+    mg4.valuationCurrency = "USD";
+    this.margincalls.push(mg4);
 
-    var ag5: Agreement = new Agreement();
-    ag5.agreementCode = "GOLDMAN US ETD";
-    ag5.agreementName = "GOLDMAN US ETD";
-    ag5.principalCode = "FM";
-    ag5.agreementScope = "Executed";
-    ag5.agreementType = "ETD";
-    ag5.agreementMutuality = "Both";
-    ag5.counterpartyCode = "SOCG";
-    this.agreements.push(ag5);
+    var mg5: Margincall = new Margincall();
+    mg5.processStep = "Authorized"
+    mg5.agreementCode = "GGOLDMAN US MSFTA";
+    mg5.callType = "Variation Margin";
+    mg5.marginCallScope = "To Be Executed";
+    mg5.valuationDate = "12/05/2017";
+    mg5.proposedTransferAmount = "-380,000";
+    mg5.valuationCurrency = "USD";
+    this.margincalls.push(mg5);
 
-    var ag6: Agreement = new Agreement();
-    ag6.agreementCode = "BNPP FR CLRD OTC";
-    ag6.agreementName = "BNPP FR CLRD OTC";
-    ag6.principalCode = "GLB";
-    ag6.agreementScope = "Executed";
-    ag6.agreementType = "OTC";
-    ag6.agreementMutuality = "Both";
-    ag6.counterpartyCode = "SOCG";
-    this.agreements.push(ag6);
+    var mg6: Margincall = new Margincall();
+    mg6.processStep = "Notified"
+    mg6.agreementCode = "NOMURA LN OTC";
+    mg6.callType = "Variation Margin";
+    mg6.marginCallScope = "To Be Executed";
+    mg6.valuationDate = "12/05/2017";
+    mg6.proposedTransferAmount = "-25,028";
+    mg6.valuationCurrency = "EUR";
+    this.margincalls.push(mg6);
   }
+
+  open(content) {
+    this.modalService.open(content, {windowClass: 'modal-search'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
 }

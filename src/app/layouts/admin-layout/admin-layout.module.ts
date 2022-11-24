@@ -15,7 +15,9 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { SearchPipe } from './search.pipe';
+import { SearchPipeAgreement } from './search.pipe.agreement';
+import { SearchPipeMargincall } from './search.pipe.margincall';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { SearchPipe } from './search.pipe';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
@@ -33,7 +36,8 @@ import { SearchPipe } from './search.pipe';
     TypographyComponent,
     NotificationsComponent,
     MapComponent,
-    SearchPipe,
+    SearchPipeAgreement,
+    SearchPipeMargincall,
     // RtlComponent
   ]
 })
